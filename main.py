@@ -13,25 +13,25 @@ def a(number):
     return result
 
 
-def b(param):
-    return param.replace('Odd', 'DDO').replace('Even', 'NEVE')
+def b(my_input):
+    return my_input.replace('Odd', 'DDO').replace('Even', 'NEVE')
 
 
-def c(param):
-    return param.replace('DDO', '686879').replace('NEVE', '78698669')
+def c(my_input):
+    return my_input.replace('DDO', '686879').replace('NEVE', '78698669')
 
 
-def d(param):
-    return param.replace('686879', 'DDO').replace('78698669', 'NEVE')
+def d(my_input):
+    return my_input.replace('686879', 'DDO').replace('78698669', 'NEVE')
 
 
-def e(param):
-    return param.replace('DDO', 'Odd').replace('NEVE', 'Even')
+def e(my_input):
+    return my_input.replace('DDO', 'Odd').replace('NEVE', 'Even')
 
 
-def f(param):
+def f(my_input):
     result = ''
-    numberlist = re.findall(r'\d+', param)
+    numberlist = re.findall(r'\d+', my_input)
     for i in numberlist:
         result += i
 
@@ -39,10 +39,24 @@ def f(param):
 
 
 if __name__ == '__main__':
-    number = input('Your number :')
-    print('function a => ' + a(number))
-    print('function b => ' + b(a(number)))
-    print('function c => ' + c(b(a(number))))
-    print('function d => ' + d(c(b(a(number)))))
-    print('function e => ' + e(d(c(b(a(number))))))
-    print('function f => ' + f(e(d(c(b(a(number)))))))
+
+    while True:
+        number = input('Your number :')
+        if not number.isdigit():
+            print('please try again')
+            continue
+        break
+    
+    a = a(number)
+    b = b(a)
+    c = c(b)
+    d = d(c)
+    e = e(d)
+    f = f(e)
+
+    print('function a => ' + a)
+    print('function b => ' + b)
+    print('function c => ' + c)
+    print('function d => ' + d)
+    print('function e => ' + e)
+    print('function f => ' + f)
