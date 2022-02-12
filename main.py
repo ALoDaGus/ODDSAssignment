@@ -1,41 +1,58 @@
 import re
+class OddnEven:
 
 
-def a(number):
-    snumber = str(number)
-    result = ''
-    for i in snumber:
-        if int(i) % 2 == 0:
-            result += 'Even' + i
-        else:
-            result += 'Odd' + i
+    def __init__(self, odd_prefix, even_prefix):
 
-    return result
+        self.ODD_PREFIX = odd_prefix
+        self.EVEN_PREFIX = even_prefix
+
+        self.ODD_ASCII = ''
+        self.EVEN_ASCII = ''
+
+        ascii_list = [ord(character) for character in self.ODD_PREFIX[::-1].upper()]
+        for c in ascii_list:
+            self.ODD_ASCII += str(c)
+
+        ascii_list = [ord(character) for character in self.EVEN_PREFIX[::-1].upper()]
+        for c in ascii_list:
+            self.EVEN_ASCII += str(c)
+
+    def a(self, number):
+        snumber = str(number)
+        result = ''
+        for i in snumber:
+            if int(i) % 2 == 0:
+                result += self.EVEN_PREFIX + i
+            else:
+                result += self.ODD_PREFIX + i
+
+        return result
 
 
-def b(my_input):
-    return my_input.replace('Odd', 'DDO').replace('Even', 'NEVE')
+    def b(self, my_input):
+        return my_input.replace(self.ODD_PREFIX, self.ODD_PREFIX[::-1].upper()).replace(self.EVEN_PREFIX, self.EVEN_PREFIX[::-1].upper())
 
 
-def c(my_input):
-    return my_input.replace('DDO', '686879').replace('NEVE', '78698669')
+    def c(self, my_input):
+        return my_input.replace(self.ODD_PREFIX[::-1].upper(), self.ODD_ASCII).replace(self.EVEN_PREFIX[::-1].upper(), self.EVEN_ASCII)
 
 
-def d(my_input):
-    return my_input.replace('686879', 'DDO').replace('78698669', 'NEVE')
+    def d(self, my_input):
+        return my_input.replace(self.ODD_ASCII, self.ODD_PREFIX[::-1].upper()).replace(self.EVEN_ASCII, self.EVEN_PREFIX[::-1].upper())
 
 
-def e(my_input):
-    return my_input.replace('DDO', 'Odd').replace('NEVE', 'Even')
+    def e(self, my_input):
+        return my_input.replace(self.ODD_PREFIX[::-1].upper(), self.ODD_PREFIX).replace(self.EVEN_PREFIX[::-1].upper(), self.EVEN_PREFIX)
 
 
-def f(my_input):
-    result = ''
-    numberlist = re.findall(r'\d+', my_input)
-    for i in numberlist:
-        result += i
+    def f(self, my_input):
+        result = ''
+        numberlist = re.findall(r'\d+', my_input)
+        for i in numberlist:
+            result += i
 
-    return result
+        return result
 
 
 if __name__ == '__main__':
@@ -46,13 +63,15 @@ if __name__ == '__main__':
             print('please try again')
             continue
         break
+
+    oddnEven = OddnEven('Odd', 'Even')
     
-    a = a(number)
-    b = b(a)
-    c = c(b)
-    d = d(c)
-    e = e(d)
-    f = f(e)
+    a = oddnEven.a(number)
+    b = oddnEven.b(a)
+    c = oddnEven.c(b)
+    d = oddnEven.d(c)
+    e = oddnEven.e(d)
+    f = oddnEven.f(e)
 
     print('function a => ' + a)
     print('function b => ' + b)
